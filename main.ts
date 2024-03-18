@@ -1,3 +1,14 @@
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber < 15) {
+        basic.showNumber(receivedNumber)
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    } else {
+        basic.showNumber(receivedNumber)
+        strip.showColor(neopixel.colors(NeoPixelColors.Blue))
+    }
+    basic.pause(2000)
+    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+})
 function Fiesta () {
     for (let index = 0; index < 10; index++) {
         strip.showColor(neopixel.colors(NeoPixelColors.Green))
@@ -15,7 +26,7 @@ function Fiesta () {
 }
 input.onButtonPressed(Button.A, function () {
     if (RE == 1) {
-        radio.sendString("" + (input.temperature()))
+        radio.sendNumber(input.temperature())
         Correcto()
         music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.InBackground)
     }
